@@ -1,0 +1,2 @@
+# LearnNotes_obsidian
+学习笔记仓库，存放Obsidian软件的Markdown文件
