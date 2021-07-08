@@ -4,11 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "1aefad02f319ea49",
+        "id": "5a57368ea668741a",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "工具/Git的相关配置与操作.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "e2e97694697206cc",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "工具/Git的相关配置与操作.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -49,7 +63,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f842614617fd546b",
@@ -65,6 +80,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "工具/Git的相关配置与操作.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -82,9 +98,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1aefad02f319ea49",
+  "active": "5a57368ea668741a",
   "lastOpenFiles": [
     "工具/Git的相关配置与操作.md",
+    "工具/ubuntu相关配置.md",
     "Java/SpringCloud学习笔记.md",
     "Java/SpringCloud 学习笔记.md",
     "README.md",

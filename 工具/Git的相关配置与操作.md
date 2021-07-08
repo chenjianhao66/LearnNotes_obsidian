@@ -37,10 +37,23 @@ git remote remove origin
 
 ## checkout_切换分支
 
+## rm_删除文件
+在git工作空间删除一个文件，会提示你只是在git工作空间删除但文件不会删除，还是文件和git工作空间一起删除。
+想要git工作空间和文件一起删除的话，需要加参数 `-f ` 
+只是在git工作空间删除但文件保留，需要加参数 `--cached`
+```
+# 模板
+git rm [文件名]
 
+#示例
+git rm git配置.md
 
+# git工作空间和文件一起删除
+git rm git配置.md -f
 
-
+# git工作空间记录删除，但是文件没有删除
+git rm git配置.md -cached
+```
 
 
 
