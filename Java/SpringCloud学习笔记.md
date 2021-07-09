@@ -28,7 +28,7 @@
 服务间通信组件：RestTmplate+Ribbon,Openfeign
 ```
 ## 组件介绍
-### nacos
+### 服务发现与注册组件 & 配置中心
 nacos，全称 Name Service(服务注册与发现) & Configurations Services(统一配置中心)，nacos就是取 Name Service的首字母、Configurations的前2个字母以及Services的首字母。
 
 [nacos官方网站](https://nacos.io/zh-cn/index.html)
@@ -79,6 +79,145 @@ nacos is starting，you can check the /home/yz/file/code/nacos/logs/start.out
 
 启动成功之后通过访问以下链接即可到达登陆界面
 [http://localhost:8848/nacos/index.html](http://localhost:8848/nacos/index.html)
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-28-nacosStart.png)
 
 
-测试提交
+首页展示
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-28-nacosIndex.png)
+
+#### 2、开发服务并注册到nacos
+##### 构建父项目
+新建一个空项目，在此空项目的基础上建立一个 `Maven Mouble`，在该模块上的 `pom.xml` 配置文件写内容，该配置文件只管理父依赖，具体的依赖包在下面的子模块进行添加；使用 `dependencyManagement` 标签进行管理
+```
+<!-- parent project  springBoot-->  
+<parent>  
+    <artifactId>spring-boot-starter</artifactId>  
+    <groupId>org.springframework.boot</groupId>  
+    <version>2.2.5.RELEASE</version>  
+</parent>  
+  
+<properties>  
+    <!--<maven.compiler.source>8</maven.compiler.source>-->  
+ <!--<maven.compiler.target>8</maven.compiler.target>--> <java.version>1.8</java.version>  
+    <spring-cloud.version>Hoxton.SR6</spring-cloud.version>  
+</properties>  
+  
+<!--springCloud parent project-->  
+<dependencyManagement>  
+    <dependencies>  
+        <!--spring cloud-->  
+ 		<dependency>  
+            <groupId>org.springframework.cloud</groupId>  
+            <artifactId>spring-cloud-dependencies</artifactId>  
+            <version>${spring-cloud.version}</version>  
+            <type>pom</type>  
+            <scope>import</scope>  
+        </dependency>  
+  
+        <!--alibaba cloud-->  
+ 		<dependency>  
+            <groupId>com.alibaba.cloud</groupId>  
+            <artifactId>spring-cloud-alibaba-dependencies</artifactId>  
+			<!--下面的版本由上面的 properteis标签定义-->
+            <version>${spring.cloud.alibaba.version}</version>  
+            <type>pom</type>  
+            <scope>import</scope>  
+        </dependency>  
+    </dependencies>  
+</dependencyManagement>
+```
+
+##### 创建子项目
+在副项目的基础上新建一个子项目，设置父项目，继承父项目的依赖，然后在子项目的 `pom.xml` 配置文件中添加 `springboot-web` 依赖；
+
+**子项目的pom.xml 配置文件**
+在pom文件中要引入nacos的服务发现依赖 `discovery`
+```
+<!--父项目-->
+<parent>  
+    <artifactId>springcloud_parent</artifactId>  
+    <groupId>com.jianhao</groupId>  
+    <version>1.0-SNAPSHOT</version>  
+</parent>  
+<modelVersion>4.0.0</modelVersion>  
+  
+<artifactId>springCloud_02nacosClient8888</artifactId>  
+  
+<properties>  
+    <maven.compiler.source>8</maven.compiler.source>  
+    <maven.compiler.target>8</maven.compiler.target>  
+</properties>  
+  
+  <!--子项目的具体依赖-->
+<dependencies>  
+    <dependency>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-web</artifactId>  
+    </dependency>  
+	
+	<!--关键，要引入nacos的服务发现依赖-->
+    <dependency>  
+        <groupId>com.alibaba.cloud</groupId>  
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>  
+        <version>2.2.4.RELEASE</version>  
+    </dependency>  
+</dependencies>
+```
+**application.properties**
+```
+# 指定服务端口
+server.port=8888  
+
+# 指定服务名称，全局唯一标识
+spring.application.name=nacosclient8888  
+
+# 指定nacos服务地址  
+spring.cloud.nacos.server-addr=localhost:8848  
+
+## 指定注册中心地址  
+spring.cloud.nacos.discovery.server-addr=${spring.cloud.nacos.server-addr}  
+
+## 暴露所有web端点  
+management.endpoints.web.exposure.include=*
+```
+**新建端口用于访问测试**
+```
+@SpringBootApplication  
+public class nacosClient8888 {  
+    public static void main(String[] args) {  
+        SpringApplication.run(nacosClient8888.class,args);  
+    }  
+  
+  @RestController  
+ public class controller{  
+        @GetMapping("/")  
+        public String test(){  
+            return "nacosClient8888 server run success";  
+        }  
+    }  
+}
+```
+
+##### 启动项目
+启动该项目，然后测试接口是否测通
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_10-22-run-project.png)
+
+测试成功，回到 `nacos 管理界面` 看服务是否已经注册到 `nacos` 上；
+
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_10-17-nacosDiscovery.png)
+
+至此，服务发布成功！
+#### 3、nacos配置中心
+将服务的配置都放在nacos配置中心，能让服务启动时找到自己所属的那份配置文件，并且在nacos配置中心动态的修改配置，服务也能实时获取到配置变化。
+**添加依赖**
+```
+
+
+```
+
+### 服务间通信组件
+#### RestTemplate+Ribbon
+#### OpenFeign
+
+### 服务网关组件
+### 服务熔断与降级组件
