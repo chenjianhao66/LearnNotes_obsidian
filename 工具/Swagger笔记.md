@@ -9,13 +9,9 @@
 
 但即便如此，对于许多开发来说，编写这个yml或json格式的描述文件，本身也是有一定负担的工作，特别是在后面持续迭代开发的时候，往往会忽略更新这个描述文件，直接更改代码。久而久之，这个描述文件也和实际项目渐行渐远，基于该描述文件生成的接口文档也失去了参考意义。**所以作为Java届服务端的大一统框架Spring，迅速将Swagger规范纳入自身的标准，建立了Spring-swagger项目，后面改成了现在的Springfox。通过在项目中引入Springfox，可以扫描相关的代码，生成该描述文件，进而生成与代码一致的接口文档和客户端代码**。这种通过代码生成接口文档的形式，在后面需求持续迭代的项目中，显得尤为重要和高效。
 
-![image-20200604133739451](Swagger.assets/image-20200604133739451.png)
-
 - 总结: **Swagger就是一个用来定义接口标准,接口规范,同时能根据你的代码自动生成接口说明文档的一个工具**
 
 ## 2. 官方提供的工具
-
-![image-20200604134402375](Swagger.assets/image-20200604134402375.png)
 
 **Swagger Codegen**: 通过Codegen 可以将描述文件生成html格式和cwiki形式的接口文档，同时也能生成多种语言的服务端和客户端的代码。支持通过jar包，docker，node等方式在本地化执行生成。也可以在后面的Swagger Editor中在线生成。
 
@@ -71,17 +67,8 @@ public class SwaggerConfig {
 }
 ```
 
-![image-20200604141255475](Swagger.assets/image-20200604141255475.png)
+配置完以上配置之后，启动该 `Springboot` 项目， 访问Swagger提供的ui界面: http://localhost:8080/swagger-ui.html
 
-### 3.3 启动springboot应用
-
-![image-20200604140416957](Swagger.assets/image-20200604140416957.png)
-
-### 3.4 访问Swagger的UI界面
-
-- 访问Swagger提供的ui界面: http://localhost:8080/swagger-ui.html
-
-![image-20200604140626367](Swagger.assets/image-20200604140626367.png)
 
 ----
 
@@ -104,10 +91,6 @@ public class UserController {
 ```
 
 ### 2.重启项目访问接口界面
-
-![image-20200604141632448](Swagger.assets/image-20200604141632448.png)
-
-![image-20200604141656888](Swagger.assets/image-20200604141656888.png)
 
 ----
 
