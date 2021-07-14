@@ -211,13 +211,77 @@ public class nacosClient8888 {
 将服务的配置都放在nacos配置中心，能让服务启动时找到自己所属的那份配置文件，并且在nacos配置中心动态的修改配置，服务也能实时获取到配置变化。
 **添加依赖**
 ```
+<!--引入nacos client 依赖-->
+<dependency>
+  <groupId>com.alibaba.cloud</groupId>
+  <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+</dependency>
 
+<!--引入配置中心依赖-->
+<dependency>
+   <groupId>com.alibaba.cloud</groupId>
+   <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+</dependency>
 
 ```
 
-### 服务间通信组件
+在项目的 `resource` 目录下新建 `bootstrap.properties` 配置文件并添加以下内容:
+```
+# 远程配置中心的地址  
+spring.cloud.nacos.server-addr=localhost:8848  
+# 去指定nacos地址读取配置  
+spring.cloud.nacos.config.server-addr=${spring.cloud.nacos.server-addr}  
+# 读取配置的分组  
+spring.cloud.nacos.config.group=DEFAULT_GROUP  
+# 指定读取文件后缀  
+spring.cloud.nacos.config.file-extension=properties  
+# 指定读取文件的前缀  
+spring.application.name=config  
+# 指定读取文件的具体环境  
+spring.profiles.active=dev
+
+```
+以上文件最终会在 `nacos服务器` 上找到 `config-dev.properties` 配置文件,并将该文件的配置加载到本服务中,并且能实现配置的动态更新.
+
+
+#### 4、nacos实现持久化
+nacos的持久化指的是:在nacos上做出的配置会以表的一条记录去记录下来.在0.7版本之前，在单机模式时nacos使用嵌入式数据库(derby)实现数据的存储，不方便观察数据存储的基本情况。
+<font color=#013ADF> 
+0.7版本增加了支持mysql数据源能力，具体的操作步骤：</font>
+1. 安装数据库，版本要求：5.6.5+(或者以上)
+2. 创建mysql对应的数据库，数据库初始化文件：/nacos安装目录/conf/nacos-mysql.sql
+3. 修改conf/application.properties文件，增加支持mysql数据源配置（目前只支持mysql），添加mysql数据源的url、用户名和密码。
+
+
+实现流程:
+1.  获取到 `nacos-mysql.sql` sql文件,创建名字为 `nacos_config` 的数据库,根据sql文件创建相对应的表.
+2. 修改 `/nacos安装目录/conf/application.properties` 配置文件
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-14_17-08-nacos_mysql.png)
+将上图中画圈位置的注释去掉,并把ip地址端口号以及数据库名修改,最后修改访问数据库的用户和密码,保存.
+3. 启动nacos后服务.
+4. 进入登陆界面,账户密码一样是 `nacos/nacos` ,进入页面后新建一项配置
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-14_17-12.png)
+如果这一步使用 `nacos/nacos` 进入不到管理界面的话,可能是mysql的配置有问题,mysql是默认不允许用户进行远程连接,只允许本地连接.详细配置修改请点这里[[ubuntu相关配置#数据库踩坑记录#1 mysql用户拒绝远程访问|点击这里]]
+
+5. 进入mysql图形化管理界面,执行查询语句,查询 `nacos_config` 数据库下的 `config_info` 表
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-14_17-17-sql.png)
+在上图可以看出,新增dataId为 `nacosMysql-dev.properties` 的配置文件已经存入数据库中.至此, nacos的持久化已经全部配置完成.
+
+####  5、nacos集群搭建
+```
+<font color=#00ffff>  字体改成蓝色了 </font>   
+```
+<font color=#013ADF> </font>
+
+
+
+
+
+---
+### 服务间通信组件 
 #### RestTemplate+Ribbon
 #### OpenFeign
+Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。它具有可插拔的注解特性(可以使用springmvc的注解)，可使用Feign 注解和JAX-RS注解。Feign支持可插拔的编码器和解码器。Feign默认集成了Ribbon，默认实现了负载均衡的效果并且springcloud为feign添加了springmvc注解的支持。
 
 ### 服务网关组件
 ### 服务熔断与降级组件
