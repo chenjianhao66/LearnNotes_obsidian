@@ -1,6 +1,6 @@
 # ubuntu相关配置
 # 1、代码环境相关配置
-##  安装 Java
+##  1.1 安装 Java
 
 在ubuntu系统中安装 `Java` 的步骤如下：
 - 通过软件源来安装Java，这里使用 `apt-get` 或者下载官网的安装包并解压
@@ -49,9 +49,16 @@ java -version
 javac -version
 ```
 
+效果如下图所示：
+
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-16-Java.png)
+
 ### 下载官网安装包方式
+
 1. 前往官网下载对应版本的 tar.gz安装包
 [下载地址](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-23-javaDownload.png)
+
 2. 将下载下来的安装包解压
 ```
 sudo tar -zxvf jdk-8u291-linux-i586.tar.gz -C /usr/lib/jvm/
@@ -61,13 +68,15 @@ sudo tar -zxvf jdk-8u291-linux-i586.tar.gz -C /usr/lib/jvm/
 3. 解压完之后配置环境变量，[[#^13bd6e|配置环境变量与上文配置一致]]，修改后让配置文件生效。
 
 5. 验证 Java 环境是否配置好。
+---
 
-
-## Maven配置
+## 1.2 Maven配置
 1. 下载安装包
 
 
 Mavn的安装包需要到[官网](https://maven.apache.org/download.cgi)下载，下载二进制文件，后缀名为 tar.gz的压缩包。
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-22-mavendowload.png)
+
 
 下载完毕之后进行解压缩：
 ```
@@ -98,8 +107,11 @@ Java version: 1.8.0_292, vendor: Private Build, runtime: /usr/lib/jvm/java-8-ope
 Default locale: zh_CN, platform encoding: UTF-8
 OS name: "linux", version: "5.8.0-59-generic", arch: "amd64", family: "unix"
 ```
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-20-maven.png)
 
-## MySQL数据库安装
+---
+
+## 1.3 MySQL数据库相关
 MySQL数据库最快捷的安装方法是通过 `apt-get` 方式安装
 ```
 sudo apt-get update
@@ -127,3 +139,86 @@ systemctl status mysql
 7月 08 09:38:03 yz-ThinkPad-E15-Gen-2 systemd[1]: Started MySQL Community Server.
 ```
 
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-09_09-19-mysql.png)
+
+### 数据库踩坑记录
+#### 1. mysql用户拒绝远程访问
+
+解决方法:新建一个用户,赋予权限,然后刷新缓存.
+```
+## 进入mysql管理界面
+sudo mysql -yroot -p
+
+## 创建用户
+mysql> create user 'test'@'%' identified by 'Yz123456.';
+
+## 赋予权限,赋予test用户对所有数据库有所有权限
+mysql> grant all privileges on *.* to 'test'@'%' with grant option;
+
+## 刷新权限
+mysql> flush privileges;
+
+## 查看用户权限
+
+mysql> select user,host from user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| root             | %         |
+| test             | %         |
+| debian-sys-maint | localhost |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
++------------------+-----------+
+6 rows in set (0.00 sec)
+
+## 如果user对应的host列中是 % 的话就代表可以远程连接,localhost代表仅能本地连接.
+
+至此,所有设置完毕. mysql图形化界面可以通过test用户来进行远程访问.
+
+## 如果想要root设置允许远程连接的呢?
+
+## 解决方案:
+
+### 进入mysql管理界面并且选择mysql数据库
+
+mysql -uroot -p
+mysql> use mysql;
+
+## 设置root账户的访问权限
+
+update user set host='%' where user='root';
+
+## 执行上面sql语句后,查询用户的权限
+
+mysql> select user,host from user;
+
+解决完毕.
+
+### 可以对一个用户进行精细化权限赋予,下面是例子:
+### 赋予test用户对testdb数据库有update的权限.
+mysql> grant all privileges on testdb.update to 'test'@'%' with grant option;
+
+```
+
+
+
+---
+## 1.4 nginx安装
+通过 `apt-get` 方式进行安装
+```
+sudo apt-get install nginx
+```
+查看 `nginx` 是否安装成功
+```
+nginx -v
+```
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-07-14_10-09-nginx.png)
+
+nginx文件安装完成之后的文件位置：
+
+-   /usr/sbin/nginx：主程序
+-   /etc/nginx：存放配置文件
+-   /usr/share/nginx：存放静态文件
+-   /var/log/nginx：存放日志
