@@ -4,12 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "6f73dd5766eeaab1",
+        "id": "a69e991a6ffbe1ac",
         "type": "leaf",
+        "dimension": 25.671140939597315,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "工具/Swagger笔记.md",
+            "file": "工具/Git的相关配置与操作.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "58acba9d038c34e0",
+        "type": "leaf",
+        "dimension": 24.440715883668904,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "工具/Git的相关配置与操作.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "b05ef238c1589c41",
+        "type": "leaf",
+        "dimension": 25.05592841163311,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "工具/ubuntu相关配置.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "650890d1eb3c6214",
+        "type": "leaf",
+        "dimension": 24.832214765100673,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "工具/ubuntu相关配置.md",
             "mode": "preview"
           }
         }
@@ -52,7 +89,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f842614617fd546b",
@@ -69,7 +107,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "工具/Swagger笔记.md"
+                "file": "工具/ubuntu相关配置.md"
               }
             }
           },
@@ -90,13 +128,13 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工具/Swagger笔记.md",
+                "file": "工具/ubuntu相关配置.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
+                "backlinkCollapsed": true,
                 "unlinkedCollapsed": true
               }
             }
@@ -120,19 +158,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
-  "active": "6f73dd5766eeaab1",
+  "active": "650890d1eb3c6214",
   "lastOpenFiles": [
-    "工具/Swagger笔记.md",
-    "工具/Git的相关配置与操作.md",
     "工具/ubuntu相关配置.md",
-    "README.md",
-    "Java/SpringCloud学习笔记.md",
-    "2021-W26.md",
-    "Java/Java垃圾回收机制.md",
+    "工具/Git的相关配置与操作.md",
+    "工具/ubuntu相关/ubuntu系统下Java环境安装.md",
     "Java/Java线程池.md",
+    "Java/SpringCloud学习笔记.md",
+    "工具/Swagger笔记.md",
+    "Java/Java多线程和并发知识点详细总结.pdf",
+    "Java/Java垃圾回收机制.md",
     "Java/Java线程.md",
-    "Java/Java多线程和并发知识点详细总结.pdf"
+    "2021-07-20.md"
   ]
 }
