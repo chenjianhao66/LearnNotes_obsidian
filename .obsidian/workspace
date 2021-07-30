@@ -7,11 +7,8 @@
         "id": "9183693afec8579f",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "工作/工具/ubuntu相关/Java环境配置.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工作/工具/ubuntu相关/Java环境配置.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,9 +91,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "工作/工具/ubuntu相关/Java环境配置.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -123,15 +117,15 @@
   },
   "active": "9183693afec8579f",
   "lastOpenFiles": [
-    "工作/工具/ubuntu相关/ubuntu系统的Java环境配置.md",
-    "工作/工具/Git的相关配置与操作.md",
-    "工作/工具/ubuntu相关配置.md",
-    "工作/工具/ubuntu相关/ubuntu系统下Java环境安装.md",
-    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md",
+    "工作/工具/ubuntu相关/ubuntu系统的Maven环境配置.md",
     "工作/工具/ubuntu相关/ubuntu系统的Mysql环境搭建.md",
-    "未命名.md",
-    "工具/Swagger笔记.md",
-    "工具/ubuntu相关配置.md",
-    "工具/Git的相关配置与操作.md"
+    "工作/工具/ubuntu相关/ubuntu系统的nginx服务安装.md",
+    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md",
+    "工作/工具/ubuntu相关/ubuntu系统下Java环境安装.md",
+    "工作/工具/ubuntu相关/nginx服务安装.md",
+    "工作/工具/ubuntu相关/Mysql环境搭建以及使用配置记录.md",
+    "工作/工具/ubuntu相关/vscode配置.md",
+    "工作/工具/ubuntu相关/Mysql环境搭建以及使用记录详解.md",
+    "工作/工具/ubuntu相关/Mysql环境搭建.md"
   ]
 }
