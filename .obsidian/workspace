@@ -4,50 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "a69e991a6ffbe1ac",
+        "id": "9183693afec8579f",
         "type": "leaf",
-        "dimension": 25.671140939597315,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "工具/Git的相关配置与操作.md",
+            "file": "工作/工具/ubuntu相关/Java环境配置.md",
             "mode": "source"
-          }
-        }
-      },
-      {
-        "id": "58acba9d038c34e0",
-        "type": "leaf",
-        "dimension": 24.440715883668904,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "工具/Git的相关配置与操作.md",
-            "mode": "source"
-          }
-        }
-      },
-      {
-        "id": "b05ef238c1589c41",
-        "type": "leaf",
-        "dimension": 25.05592841163311,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "工具/ubuntu相关配置.md",
-            "mode": "source"
-          }
-        }
-      },
-      {
-        "id": "650890d1eb3c6214",
-        "type": "leaf",
-        "dimension": 24.832214765100673,
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "工具/ubuntu相关配置.md",
-            "mode": "preview"
           }
         }
       }
@@ -89,8 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f842614617fd546b",
@@ -99,20 +61,26 @@
       {
         "id": "8825a04b1d327196",
         "type": "tabs",
-        "dimension": 58.494404883011185,
         "children": [
           {
-            "id": "7264d97d08da9eb8",
+            "id": "15402439617ac030",
             "type": "leaf",
             "state": {
-              "type": "outline",
+              "type": "backlink",
               "state": {
-                "file": "工具/ubuntu相关配置.md"
+                "file": "工作/工具/ubuntu相关/Java环境配置.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "195b8ee956c9dd51",
+            "id": "bf45095ea9c274ef",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -123,34 +91,27 @@
             }
           },
           {
-            "id": "15402439617ac030",
+            "id": "a3eec7692774add7",
             "type": "leaf",
             "state": {
-              "type": "backlink",
+              "type": "outline",
               "state": {
-                "file": "工具/ubuntu相关配置.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": true,
-                "unlinkedCollapsed": true
+                "file": "工作/工具/ubuntu相关/Java环境配置.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
-        "id": "0d4dc2c5c4f6c18e",
+        "id": "945ef608a42fe242",
         "type": "tabs",
-        "dimension": 41.50559511698881,
         "children": [
           {
-            "id": "86313600cf0446c1",
+            "id": "1ea32624d8fb4059",
             "type": "leaf",
             "state": {
-              "type": "calendar",
+              "type": "empty",
               "state": {}
             }
           }
@@ -158,20 +119,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 284
   },
-  "active": "650890d1eb3c6214",
+  "active": "9183693afec8579f",
   "lastOpenFiles": [
-    "工具/ubuntu相关配置.md",
-    "工具/Git的相关配置与操作.md",
-    "工具/ubuntu相关/ubuntu系统下Java环境安装.md",
-    "Java/Java线程池.md",
-    "Java/SpringCloud学习笔记.md",
+    "工作/工具/ubuntu相关/ubuntu系统的Java环境配置.md",
+    "工作/工具/Git的相关配置与操作.md",
+    "工作/工具/ubuntu相关配置.md",
+    "工作/工具/ubuntu相关/ubuntu系统下Java环境安装.md",
+    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md",
+    "工作/工具/ubuntu相关/ubuntu系统的Mysql环境搭建.md",
+    "未命名.md",
     "工具/Swagger笔记.md",
-    "Java/Java多线程和并发知识点详细总结.pdf",
-    "Java/Java垃圾回收机制.md",
-    "Java/Java线程.md",
-    "2021-07-20.md"
+    "工具/ubuntu相关配置.md",
+    "工具/Git的相关配置与操作.md"
   ]
 }

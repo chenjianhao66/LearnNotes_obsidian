@@ -1,6 +1,13 @@
 {
-  "baseFontSize": 16,
+  "baseFontSize": 20,
   "theme": "obsidian",
   "cssTheme": "Cybertron",
-  "translucency": false
+  "translucency": false,
+  "enabledCssSnippets": [
+    "tag-flag",
+    "tag-pills",
+    "text-justify",
+    "list-outline",
+    "round-checkbox"
+  ]
 }
