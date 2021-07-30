@@ -107,3 +107,10 @@ public class configController {
 ### 测试结果
 使用 **swagger** 接口组件来测试，测试如下：
 
+
+
+
+# 参考文章
+[Spring异常处理 @ExceptionHandler](https://www.cnblogs.com/shuimuzhushui/p/6791600.html)
+
+[# Spring 异常处理三种方式 @ExceptionHandler](https://www.cnblogs.com/lvbinbin2yujie/p/10574812.html#type4)
