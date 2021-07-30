@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "9183693afec8579f",
+        "id": "3a273899cf5c51f3",
         "type": "leaf",
         "state": {
           "type": "empty",
@@ -49,7 +49,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f842614617fd546b",
@@ -98,14 +99,14 @@
         "currentTab": 2
       },
       {
-        "id": "945ef608a42fe242",
+        "id": "cfa13bf5712f090e",
         "type": "tabs",
         "children": [
           {
-            "id": "1ea32624d8fb4059",
+            "id": "fc0d80c29971fecd",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "calendar",
               "state": {}
             }
           }
@@ -115,17 +116,17 @@
     "direction": "horizontal",
     "width": 284
   },
-  "active": "9183693afec8579f",
+  "active": "3a273899cf5c51f3",
   "lastOpenFiles": [
+    "工作/Java/Spring boot的全局异常处理器.md",
+    "工作/Java/未命名.md",
+    "工作/工具/正则表达式.md",
+    "工作/工具/ubuntu相关/Mysql环境搭建以及使用配置记录.md",
+    "工作/工具/ubuntu相关/nginx服务安装.md",
+    "工作/工具/ubuntu相关/vscode配置.md",
     "工作/工具/ubuntu相关/ubuntu系统的Maven环境配置.md",
     "工作/工具/ubuntu相关/ubuntu系统的Mysql环境搭建.md",
     "工作/工具/ubuntu相关/ubuntu系统的nginx服务安装.md",
-    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md",
-    "工作/工具/ubuntu相关/ubuntu系统下Java环境安装.md",
-    "工作/工具/ubuntu相关/nginx服务安装.md",
-    "工作/工具/ubuntu相关/Mysql环境搭建以及使用配置记录.md",
-    "工作/工具/ubuntu相关/vscode配置.md",
-    "工作/工具/ubuntu相关/Mysql环境搭建以及使用记录详解.md",
-    "工作/工具/ubuntu相关/Mysql环境搭建.md"
+    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md"
   ]
 }
