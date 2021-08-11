@@ -4,11 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "3a273899cf5c51f3",
+        "id": "feefd55f363bea77",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "2021-08-10.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "7b4c944859fd9ec6",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "2021-08-10.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -49,8 +63,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f842614617fd546b",
@@ -66,12 +79,13 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "2021-08-10.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": true,
+                "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
@@ -92,7 +106,21 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "2021-08-10.md"
+              }
+            }
+          },
+          {
+            "id": "0335e46b3c4130b8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2021-08-10.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
             }
           }
         ],
@@ -114,19 +142,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 284
+    "width": 284,
+    "collapsed": true
   },
-  "active": "3a273899cf5c51f3",
+  "active": "feefd55f363bea77",
   "lastOpenFiles": [
+    "2021-08-10.md",
+    "工作/工具/Git的相关配置与操作.md",
+    "工作/踩坑记录/编译nacos源码时执行install命令中所遇到的问题.md",
+    "工作/踩坑记录/无法远程连接到MySQL服务对数据库表进行操作.md",
     "工作/Java/Spring boot的全局异常处理器.md",
-    "工作/Java/未命名.md",
-    "工作/工具/正则表达式.md",
-    "工作/工具/ubuntu相关/Mysql环境搭建以及使用配置记录.md",
-    "工作/工具/ubuntu相关/nginx服务安装.md",
-    "工作/工具/ubuntu相关/vscode配置.md",
-    "工作/工具/ubuntu相关/ubuntu系统的Maven环境配置.md",
-    "工作/工具/ubuntu相关/ubuntu系统的Mysql环境搭建.md",
-    "工作/工具/ubuntu相关/ubuntu系统的nginx服务安装.md",
-    "工作/工具/ubuntu相关/ubuntu系统的vscode配置.md"
+    "工作/Java/Serializable接口.md",
+    "工作/Java/Java线程.md",
+    "工作/Java/Java线程池.md",
+    "工作/Java/Spring/@Resource注解的作用与使用.md",
+    "工作/Java/Spring/未命名.md"
   ]
 }
