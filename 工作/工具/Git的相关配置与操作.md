@@ -55,6 +55,39 @@ git rm git配置.md -f
 git rm git配置.md -cached
 ```
 
+## ubuntu 命令行终端显示分支名
+1. 进入home 目录
+```
+
+
+$ cd ~
+
+```
+
+ 2. 编辑.bashrc文件
+```
+$ gedit .bashrc
+
+
+```
+
+3. 在文件末尾添加以下信息
+
+```
+PS1=""
+PS1="$PS1"'\[\033[32m\]'        # change to green
+PS1="$PS1"'\u@\h '              # user@host<space>
+PS1="$PS1"'\[\033[33m\]'        # change to yellow
+PS1="$PS1"'\w '                 # pwd
+PS1="$PS1"'\[\033[36m\]'        # change color to cyan
+PS1="$PS1"'`__git_ps1`'         # git branch
+PS1="$PS1"'\[\033[0m\]'         # change color
+PS1="$PS1"'\n'                  # new line
+PS1="$PS1"'$ '                  # prompt: always $
+```
+
+4. 重新启动命令行，效果下图：
+![](https://cdn.jsdelivr.net/gh/chenjianhao66/Myblog_picture-server/2021-08-14_16-48.png)
 
 
 
@@ -69,3 +102,5 @@ git config --global i18n.logoutputencoding utf-8
 
 ☝ 增加以上配置后 git status 出现的中文乱码问题以解决。
 ```
+
+
