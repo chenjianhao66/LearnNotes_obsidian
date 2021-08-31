@@ -4,25 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "feefd55f363bea77",
+        "id": "30aca00576c4adb8",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "2021-08-10.md",
-            "mode": "source"
-          }
-        }
-      },
-      {
-        "id": "7b4c944859fd9ec6",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "2021-08-10.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -50,7 +36,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Java",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2021-08-10.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,9 +91,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "2021-08-10.md"
-              }
+              "state": {}
             }
           },
           {
@@ -117,7 +100,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2021-08-10.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,17 +127,17 @@
     "width": 284,
     "collapsed": true
   },
-  "active": "feefd55f363bea77",
+  "active": "30aca00576c4adb8",
   "lastOpenFiles": [
-    "2021-08-10.md",
     "工作/工具/Git的相关配置与操作.md",
-    "工作/踩坑记录/编译nacos源码时执行install命令中所遇到的问题.md",
-    "工作/踩坑记录/无法远程连接到MySQL服务对数据库表进行操作.md",
+    "工作/工具/ubuntu相关配置.md",
+    "工作/Java/SpringCloud学习笔记.md",
     "工作/Java/Spring boot的全局异常处理器.md",
     "工作/Java/Serializable接口.md",
-    "工作/Java/Java线程.md",
-    "工作/Java/Java线程池.md",
-    "工作/Java/Spring/@Resource注解的作用与使用.md",
-    "工作/Java/Spring/未命名.md"
+    "工作/Java/Java学习路线.md",
+    "模板/踩坑记录.md",
+    "模板/模板文件汇总.md",
+    "工作/Java/Spring/未命名.md",
+    "工作/Java/Spring/@ConditionalOnMissingBean注解的作用与使用.md"
   ]
 }
