@@ -4,11 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "30aca00576c4adb8",
+        "id": "f74ac827a870e133",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "互联网相关/Java/docker/Docker镜像和容器相关命令.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "c6e0fa17aca0bb66",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "互联网相关/Java/docker/Docker镜像和容器相关命令.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -49,7 +63,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f842614617fd546b",
@@ -65,6 +80,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "互联网相关/Java/docker/Docker镜像和容器相关命令.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -91,18 +107,17 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "互联网相关/Java/docker/Docker镜像和容器相关命令.md"
+              }
             }
           },
           {
             "id": "0335e46b3c4130b8",
             "type": "leaf",
             "state": {
-              "type": "outgoing-link",
-              "state": {
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ],
@@ -127,17 +142,17 @@
     "width": 284,
     "collapsed": true
   },
-  "active": "30aca00576c4adb8",
+  "active": "f74ac827a870e133",
   "lastOpenFiles": [
+    "互联网相关/Java/docker/Docker镜像和容器相关命令.md",
+    "互联网相关/Java/docker/什么是Docker.md",
+    "互联网相关/Java/docker/Docker架构以及概念.md",
+    "互联网相关/Java/docker/Docker的安装（ubuntu安装）.md",
+    "互联网相关/Java/docker/Docker的安装（CentOS安装）.md",
+    "互联网相关/Java/docker/未命名.md",
+    "互联网相关/Java/Spring/Java的元注解使用说明.md",
+    "互联网相关/Java/Spring/SpringBoot的事件监听机制.md",
     "工作/工具/Git的相关配置与操作.md",
-    "工作/工具/ubuntu相关配置.md",
-    "工作/Java/SpringCloud学习笔记.md",
-    "工作/Java/Spring boot的全局异常处理器.md",
-    "工作/Java/Serializable接口.md",
-    "工作/Java/Java学习路线.md",
-    "模板/踩坑记录.md",
-    "模板/模板文件汇总.md",
-    "工作/Java/Spring/未命名.md",
-    "工作/Java/Spring/@ConditionalOnMissingBean注解的作用与使用.md"
+    "工作/工具/ubuntu相关配置.md"
   ]
 }
