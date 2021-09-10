@@ -29,7 +29,7 @@
 
 ### 3.1 引入依赖
 
-```xml
+```
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger2</artifactId>
@@ -166,6 +166,8 @@ public class UserController {
 
   
 
+## 6.注意事项
+> Spring-boot2.0以上在集成swagger后，配置WebConfig时不要extends WebMvcConfigurationSupport，需要修改为最新的implements WebMvcConfigurer，不然访问http://localhost:8080/swagger-ui.html时读取不到swagger-ui的静态资源文件。
 
 
    
