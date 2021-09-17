@@ -165,6 +165,42 @@ public class UserController {
   ```
 
   
+### 5.5 @ApiModel
+- 作用：描述一个Model信息（这种一般用在post创建的时候，使用@RequestBody这样的场景，请求参数无法使用@ApiImplicitParam注解进行描述的时候）
+- 修饰范围：用在类上
+
+```java
+@ApiModel(description= "返回响应数据") 
+public class RestMessage implements Serializable{ 
+	.....
+}
+```
+
+
+### 5.6 @ApiModelProperty
+@ApiModelProperty用来描述一个Model的属性。
+```java
+@ApiModel(description= "返回响应数据") 
+public class RestMessage implements Serializable{ 
+	@ApiModelProperty(value = "是否成功",required=true) 
+	private boolean success=true;
+	
+	@ApiModelProperty(value = "错误码") 
+	private Integer errCode; 
+	
+	@ApiModelProperty(value = "提示信息") 
+	private String message; 
+	
+	@ApiModelProperty(value = "数据") 
+	private Object data; 
+	
+	/* getter/setter 略*/ 
+}
+```
+
+
+### 5.7 更多注解与字段
+[参考文章](https://www.cnblogs.com/three-fighter/p/12346184.html)
 
 ## 6.注意事项
 > Spring-boot2.0以上在集成swagger后，配置WebConfig时不要extends WebMvcConfigurationSupport，需要修改为最新的implements WebMvcConfigurer，不然访问http://localhost:8080/swagger-ui.html时读取不到swagger-ui的静态资源文件。
