@@ -51,7 +51,7 @@
 
 
 ### MyException.java
-```
+```java
 public class MyException extends RuntimeException {
 	//自定义的枚举类
 	private resultEnum resultEnum;
@@ -75,7 +75,7 @@ public class MyException extends RuntimeException {
 
 
 ### MyExceptionHandler.java
-```
+```java
 @RestControllerAdvice(annotations = RestController.class)
 public class MyExceptionHandler {
 
@@ -89,7 +89,7 @@ public class MyExceptionHandler {
 ```
 
 ###  testController.java
-```
+```java
 @RestController
 public class configController {
 	@GetMapping("test")
