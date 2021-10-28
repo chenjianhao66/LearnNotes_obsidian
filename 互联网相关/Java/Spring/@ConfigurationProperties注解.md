@@ -188,3 +188,10 @@ test.config.map.key1.password=p1
 test.config.map.key2.username=u2
 test.config.map.key2.password=p2
 ```
+
+
+
+# 注意事项
+- 在使用该注解的时候，需要保证被该注解标注的类提供有seter方法，要不然会注入失败！
+- 在使用yaml文件注入的时候，保证yaml文件中的key不存在 "__" 下划线。
+
