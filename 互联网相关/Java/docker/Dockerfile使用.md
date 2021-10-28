@@ -241,16 +241,3 @@ docker build -t myCentos7:01 .
 构建的镜像已经出现！
 
 
-
-### 构建一个相对复杂的镜像
-1、创建 `Dockerfile` 文件，并进行配置
-```bash
-FROM centos:7
-ADD apache-tomcat-9.0.52.tar.gz /data/tomcat
-RUN yum -y install wget
-	&& yum -y install vim
-	&& 
-WORKDIR /data/tomcat/apache-tomcat-9.0.52/
-EXPOSE 8080
-ENV 
-```
