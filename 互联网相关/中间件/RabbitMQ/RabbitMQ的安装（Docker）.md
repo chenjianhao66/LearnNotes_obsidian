@@ -32,8 +32,8 @@ docker run -di --name myrabbit -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAUL
 - name：指定容器名词
 - e：指定key-value属性，这里设置rabbit默认用户账户和密码
 - p：指定开放端口和端口映射，这里开放主机以及容器的15672、5672、25672、61613端口并一一对应起来
-- d：（待补充）
-- i：（待补充）
+- d：[[Docker镜像和容器相关命令#二、容器相关命令#1、创建容器|后台启动]]
+- i：[[Docker镜像和容器相关命令#二、容器相关命令#1、创建容器|交互式操作]]
 
 ## 访问RabbitMQ的管理界面
 
