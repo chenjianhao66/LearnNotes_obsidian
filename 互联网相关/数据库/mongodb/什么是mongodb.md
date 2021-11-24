@@ -69,4 +69,7 @@ MongoDB的单个实例可以容纳多个独立的数据库，每一个都有自�
 但是每一个结构不同的文档都可以插进这个集合里面。
 
 ## 安装MongoDB
+
+^4c01fc
+
 [安装网站](https://www.cnblogs.com/bubbleboom/p/14167409.html)
