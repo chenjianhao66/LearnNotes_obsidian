@@ -1,5 +1,5 @@
 # Ubuntu系统相关配置
-
+[[ubuntu相关配置]]
 ## 代码环境相关
 ### Java环境
 [[Java环境配置]]
@@ -20,6 +20,4 @@
 [[nginx服务安装]]
 
 ### Docker
-[[什么是Docker]]
-[[Docker的安装（ubuntu安装）|Docker在Ubuntu的安装]]
-[[Docker架构以及概念]]
+[[Docker|Docker在Ubuntu的安装]]
