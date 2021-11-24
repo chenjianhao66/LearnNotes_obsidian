@@ -6,7 +6,8 @@ author:陈建浩
 --- 
 
 # RabbitMQ工作模式——fanout模式（广播模型）
-![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111222204482.png)
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2263764-20210114134513271-559134819.png)
+
 
 在广播模式下，消息发送流程是这样的：
 
@@ -43,7 +44,8 @@ author:陈建浩
 
 
 
-### 1、Maven依赖
+### 1、Maven依赖![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2263764-20210114134513271-559134819.png)
+
 
 **pom.xml**
 

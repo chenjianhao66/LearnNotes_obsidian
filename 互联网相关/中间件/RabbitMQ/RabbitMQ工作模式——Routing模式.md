@@ -22,7 +22,8 @@ author:陈建浩
 
 Routing模式的工作示意图
 
-![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111222253829.png)
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2263764-20210114135128942-500696537.png)
+
 图解：
 
 -   P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key。
