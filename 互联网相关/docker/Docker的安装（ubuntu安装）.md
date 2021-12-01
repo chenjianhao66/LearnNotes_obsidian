@@ -22,8 +22,7 @@ author:陈建浩
 
 ####  设置Docker仓库
 1. 更新软件库并允许从HTTPS使用存储库
-```
-
+```bash
 $ sudo apt-get update
 $ sudo apt-get install \
     apt-transport-https \
@@ -35,15 +34,13 @@ $ sudo apt-get install \
 
 2. 增加官方密钥
 
-```
-
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
 ```
 
 3. 增加以下命令
 
-```
+```bash
 echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -155,4 +152,28 @@ $ sudo sh get-docker.sh
 如果要使用 Docker 作为非 root 用户，则应考虑使用类似以下方式将用户添加到 docker 组：
 ```
 $ sudo usermod -aG docker your-user
+```
+
+
+### 4. 权限操作
+如果在安装docker成功之后，执行docker命令却提示没有权限：
+```bash
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied
+
+```
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2021-11-30_17-48.png)
+
+那么执行以下代码：
+```bash
+#添加docker用户组 
+sudo groupadd docker 
+
+#将登陆用户加入到docker用户组中
+sudo gpasswd -a $USER docker 
+
+#更新用户组
+newgrp docker  
+
+#测试docker命令是否可以使用sudo正常使用
+docker ps 
 ```
