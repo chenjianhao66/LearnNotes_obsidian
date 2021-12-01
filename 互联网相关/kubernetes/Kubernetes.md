@@ -10,3 +10,5 @@ author:陈建浩
 # Kubernetes工具安装以及初始化集群
 [[Kubernetes的安装]]
 
+# Kubernetes的包管理器——Helm
+[[kubernetes的包管理器——Helm]]
