@@ -231,6 +231,17 @@ Kubernetes的副本控制器根据用途一共有6种。
 
 如果对应资源不吻合用户定义的资源状态，它就会尝试重启或重建的方式让其状态和用户定义的状态吻合；也就是说在声明控制器的时候也会声明对该pod种每个容器的期望状态，如果pod内容器没有满足期望状态，那么控制器就会作出操作（增加容器，删除容器，调度容器.....），让容器状态与期望状态相等。
 
+# Pod模板
+Pod控制器通常使用 _Pod 模板（Pod Template）_ 来替你创建 Pod 并管理它们。
+
+Pod 模板是包含在工作负载对象中的规范，用来创建 Pod。这类负载资源包括 [Deployment](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/)、 [Job](https://kubernetes.io/zh/docs/concepts/workloads/controllers/job/) 和 [DaemonSets](https://kubernetes.io/zh/docs/concepts/workloads/controllers/daemonset/)等。
+
+工作负载的控制器会使用负载对象中的 `PodTemplate` 来生成实际的 Pod。 `PodTemplate` 是你用来运行应用时指定的负载资源的目标状态的一部分。
+
+修改 Pod 模版或者切换到新的 Pod 模版都不会对已经存在的 Pod 起作用。 Pod 不会直接收到模版的更新。相反， 新的 Pod 会被创建出来，与更改后的 Pod 模版匹配。
+
+例如，Deployment 控制器针对每个 Deployment 对象确保运行中的 Pod 与当前的 Pod 模版匹配。如果模版被更新，则 Deployment 必须删除现有的 Pod，基于更新后的模版 创建新的 Pod。每个工作负载资源都实现了自己的规则，用来处理对 Pod 模版的更新。
+
 # 标签
 标签其实就一对 `key/value` ，被关联到对象上，比如Pod,标签的使用我们倾向于能够表示对象的特殊特点，就是一眼就看出了这个Pod是干什么的，标签可以用来划分特定的对象（比如版本，服务类型等），**标签可以在创建一个对象的时候直接定义，也可以在后期随时修改，每一个对象可以拥有多个标签，但是，key值必须是唯一的。**创建标签之后也可以方便我们对资源进行分组管理。如果对pod打标签，之后就可以使用标签来查看、删除指定的pod。  
 
@@ -399,6 +410,7 @@ NAME              READY   STATUS    RESTARTS   AGE     L
 nginx-pod-demo    1/1     Running   1          7d      env=testing
 ```
 
+[官方文档](https://kubernetes.io/zh/docs/concepts/overview/working-with-objects/labels/)
 # node选择器
 我们在创建pod资源的时候，pod会根据schduler进行调度，那么默认会调度到随机的一个工作节点，如果我们想要pod调度到指定节点或者调度到一些具有相同特点的node节点，怎么办呢？可以使用pod中的`spec.nodeName`或者`spec.nodeSelector`字段指定要调度到的node节点。
 
