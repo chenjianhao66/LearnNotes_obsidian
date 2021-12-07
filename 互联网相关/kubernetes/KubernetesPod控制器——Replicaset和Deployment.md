@@ -369,9 +369,36 @@ Events:
 [kubernetes官方关于Deployment的更新策略](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/#strategy)
 
 ## Deployment的更新策略
+`.spec.strategy` 策略指定用于用新 Pods 替换旧 Pods 的策略。 `.spec.strategy.type` 可以是 “Recreate” 或 “RollingUpdate”。“RollingUpdate” 是默认值。
 
+如果 `.spec.strategy.type==Recreate`，在创建新 Pods 之前，所有现有的 Pods 会被杀死。
+
+Deployment 会在 `.spec.strategy.type==RollingUpdate`时，采取 滚动更新的方式更新 Pods。你可以指定 `maxUnavailable` 和 `maxSurge` 来控制滚动更新 过程。
+
+`.spec.strategy.rollingUpdate.maxUnavailable` 是一个可选字段，用来指定 更新过程中不可用的 Pod 的个数上限。该值可以是绝对数字（例如，5），也可以是 所需 Pods 的百分比（例如，10%）。百分比值会转换成绝对数并去除小数部分。 如果 `.spec.strategy.rollingUpdate.maxSurge` 为 0，则此值不能为 0。 默认值为 25%。
+
+`.spec.strategy.rollingUpdate.maxSurge` 是一个可选字段，用来指定可以创建的超出 期望 Pod 个数的 Pod 数量。此值可以是绝对数（例如，5）或所需 Pods 的百分比（例如，10%）。 如果 `MaxUnavailable` 为 0，则此值不能为 0。百分比值会通过向上取整转换为绝对数。 此字段的默认值为 25%。
+
+```bash
+# 取值范围 
+数值:两者不能同时为0。 
+1. maxUnavailable: [0, 副本数] 
+2. maxSurge: [0, 副本数] 
+比例:两者不能同时为0。 
+1. maxUnavailable: [0%, 100%] 向下取整，比如10个副本，5%的话==0.5个，但计算按照0个； 
+2. maxSurge: [0%, 100%] 向上取整，比如10个副本，5%的话==0.5个，但计算按照1个； 
+
+# 建议配置 
+1. maxUnavailable == 0 
+2. maxSurge == 1 
+
+这是我们生产环境提供给用户的默认配置。即“一上一下，先上后下”最平滑原则：1个新版本pod ready（结合readiness）后，才销毁旧版本pod。此配置适用场景是平滑更新、保证服务平稳，但也有缺点，就是“太慢”了。 
+
+# 总结： maxUnavailable：和期望的副本数比，不可用副本数最大比例（或最大值），这个值越小，越能保证服务稳定，更新越平滑； maxSurge：和期望的副本数比，超过期望副本数最大比例（或最大值），这个值调的越大，副本更新速度越快。
+```
 
 
 # 参考文档
 [Replicaset控制器官方文档](https://kubernetes.io/zh/docs/concepts/workloads/controllers/replicaset/)
 [Deployment控制器官方文档](https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/)
+[Replicaset控制器和Deployment控制器](https://www.cnblogs.com/qiuhom-1874/p/14149042.html)](https://www.cnblogs.com/qiuhom-1874/p/14149042.html)
