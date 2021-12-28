@@ -3,7 +3,7 @@
 author:陈建浩
 #Kubernetes
 
---- 
+---
 ## 安装kubernetes
 
 ### 安装前的准备
@@ -151,6 +151,10 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
+执行成功后复制下图中的命令，该命令用于工作节点加入到集群中；
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2021-12-16_16-59.png)
+
 获取 `kubernetes` 集群各个组件的状态以及节点状态
 
 ```bash
@@ -227,16 +231,58 @@ docker rmi registry.cn-shenzhen.aliyuncs.com/myownmirrors/quay.io_coreos_flannel
 
 
 
+
+
+### 工作节点加入集群
+
+工作节点也请安装 kubectl、kubeadm、kubelet这3个工具，然后使用在上文中复制的 kubeadm join命令，表示让该节点以工作节点的方式加入到集群当中
+
 ```bash
 kubeadm join 10.1.3.203:6443 --token mk59c0.2jwnb5d7194iry3c \
 	--discovery-token-ca-cert-hash sha256:685e1097f492bdbf90aa215810dab32a0311388e423a81fde287656fa947934c
 ```
 
+加入后在执行`kubectl get nodes` 就可以看到工作节点已经加入到集群当中
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2021-12-16_17-01.png)
 
 
 
+### 安装Kuborad可视化
 
+这里使用kuborad可视化界面，[参考文档](http://press.demo.kuboard.cn/install/v3/install-in-k8s.html#%E5%AE%89%E8%A3%85)
 
+使用命令
+
+```bash
+kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+```
+
+#### 访问 Kuboard
+
+- 在浏览器中打开链接 `http://your-node-ip-address:30080`
+- 输入初始用户名和密码，并登录
+  - 用户名： `admin`
+  - 密码： `Kuboard123`
+
+### 安装k8s踩坑——kublet一直重启
+
+`kubelet` 一直重启是因为 `docker`作为 `kubernetes`的容器运行时，需要`docker`的 `cgroup`属性要与 `kubernetes` 保持一致；
+该属性在 `/etc/docker/daemon.json` 文件中进行追加设置即可
+
+```bash
+# 修改该文件
+vim /etc/docker/daemon.json
+
+# 在文件末尾追加内容
+{
+	"exec-opts": ["native.cgroupdriver=systemd"]
+}
+
+# 重启kubelet服务
+systemctl daemon-reload
+systemctl restart docker
+```
 
 ## 参考文章
 
