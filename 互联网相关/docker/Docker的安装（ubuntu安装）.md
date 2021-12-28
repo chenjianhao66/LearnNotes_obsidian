@@ -177,3 +177,20 @@ newgrp docker
 #测试docker命令是否可以使用sudo正常使用
 docker ps 
 ```
+
+### 5. 开启Docker主机的端口，允许API访问
+修改Docker服务文件
+```bash
+vim /lib/systemd/system/docker.service
+```
+在 Service字段下，找到ExecStart属性，修改为以下值：
+```bash
+## 在 -H 选项后面跟的就是自己想要的开放的端口，我这里选择开放8088端口，自行选择
+
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:8088 -H unix:///var/run/docker.sock
+```
+修改之后重新加载配置文件和重启docker服务
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+```
