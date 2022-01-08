@@ -29,3 +29,6 @@ author:陈建浩
 
 # DockerCompose原理和使用
 [[DockerCompose原理和使用]]
+
+# 搭建Docker的私人仓库
+[[搭建Docker私人仓库]]

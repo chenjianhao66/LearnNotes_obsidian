@@ -11,6 +11,9 @@ author:陈建浩
 # 安装MongoDB
 [[什么是mongodb#安装MongoDB|Ubantu安装MongoDB]]
 
+# 卸载MongoDB
+[[完全卸载mongodb]]
+
 # MongoDB相关
 ## MongoDB创建数据库用户
 [[mongodb创建用户]]

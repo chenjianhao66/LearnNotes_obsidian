@@ -24,3 +24,11 @@ author:陈建浩
 
 # Kubernetes的包管理器——Helm
 [[kubernetes的包管理器——Helm]]
+
+# Kubernetes——PV、PVC
+[[Kubernetes——PV、PVC 和 StorageClass]]
+
+
+# Kubernetes踩坑记录
+[[kubelet服务一直在自动重启]]
+[[kubernetes中scheduler状态为Unhealthy]]

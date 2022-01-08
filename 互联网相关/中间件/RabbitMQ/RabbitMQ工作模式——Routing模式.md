@@ -134,10 +134,116 @@ public class Customer {
 
 >需要注意的是，消费者可以绑定多个路由key，就是绑定交换机、队列和路由key的时候多次声明
 >```java
->         //绑定交换机、队列和路由key
->         channel.queueBind(tempQueueName,"directExchange","type");  
->         channel.queueBind(tempQueueName,"directExchange","type1"); 
->         channel.queueBind(tempQueueName,"directExchange","type2"); 
+>  //绑定交换机、队列和路由key
+>channel.queueBind(tempQueueName,"directExchange","type");  
+>channel.queueBind(tempQueueName,"directExchange","type1"); 
+> channel.queueBind(tempQueueName,"directExchange","type2"); 
 >```
 
 ## Topic模式
+`Topic`类型的`Exchange`与`Direct`相比，都是可以根据`RoutingKey`把消息路由到不同的队列。只不过`Topic`类型`Exchange`可以让队列在绑定`Routing key` 的时候使用通配符！这种模型`Routingkey` 一般都是由一个或多个单词组成，多个单词之间以”.”分割，例如： `item.insert`
+
+这里面涉及到2个字符：`*` 和 `#`
+	* (star) can substitute for exactly one word.    匹配不多不少恰好1个词
+	# (hash) can substitute for zero or more words.  匹配一个或多个词
+	
+示例：
+```
+audit.#    匹配audit.irs.corporate或者 audit.irs 等
+audit.*   只能匹配 audit.irs
+```
+
+### 示例
+
+#### 1、定义生产者
+```java
+public class Provider {  
+	 public static void main(String[] args) throws IOException {  
+		 //获取连接对象  
+		 Connection connection = RabbitmqUtils.getConnection();  
+		 Channel channel = connection.createChannel();  
+
+		 //声明交换机  
+		 channel.exchangeDeclare("topicText", BuiltinExchangeType.TOPIC);  
+
+		 //声明路由key  
+		 String routeKey = "user.delete";  
+
+		 //发布消息  
+		 channel.basicPublish("topicText",routeKey, null,("这是topic模型所发出的消息,routeKey -> ["+routeKey+"]").getBytes());  
+		 //关闭资源  
+		 RabbitmqUtils.close(connection,channel);  
+	 }  
+}
+```
+
+#### 2、定义消费者
+```java
+public class Customer1 {  
+	 public static void main(String[] args) throws IOException {  
+		 //获取连接对象  
+		 Connection connection = RabbitmqUtils.getConnection();  
+		 Channel channel = connection.createChannel();  
+
+		 //声明交换机  
+		 channel.exchangeDeclare("topicText", BuiltinExchangeType.TOPIC);  
+
+		 //声明临时队列  
+		 String queue = channel.queueDeclare().getQueue();  
+
+		 //绑定队列和交换机  
+		 channel.queueBind(queue,"topicText","user.*");  
+
+		 //消费消息  
+		 channel.basicConsume(queue,true,new DefaultConsumer(channel){  
+			 @Override 
+			 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {  
+				System.out.println("消费者1 - > "+new String(body));  
+			 }  
+		 });  
+	 }  
+}
+```
+
+消费者2，与消费者1的区别尽在与routekey的不同，消费者2的routeKey是#
+```java
+public class Customer2 {  
+	 public static void main(String[] args) throws IOException {  
+		 //获取连接对象  
+		 Connection connection = RabbitmqUtils.getConnection();  
+		 Channel channel = connection.createChannel();  
+
+		 //声明交换机  
+		 channel.exchangeDeclare("topicText", BuiltinExchangeType.TOPIC);  
+
+		 //声明临时队列  
+		 String queue = channel.queueDeclare().getQueue();  
+
+		 //绑定队列和交换机  
+		 channel.queueBind(queue,"topicText","user.#");  
+
+		 //消费消息  
+		 channel.basicConsume(queue,true,new DefaultConsumer(channel){  
+			 @Override 
+			 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {  
+				 System.out.println("消费者2 - > "+new String(body));  
+			 }  
+		 });  
+	 }  
+}
+```
+
+#### 测试
+在生产者发送消息的时候，消费者1和消费者2的消费情况
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111302128041.png)
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111302129776.png)
+
+因为此时生产者所使用的routeKey是 `user.delete`，既符合消费者1的*（匹配单个词）也符合消费者2的#（匹配多个词）。
+如果将生产者所使用的routeKey修改为 `user.findById.delete`，那么这2个的消费情况又如何呢？
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111302131084.png)
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/202111302131560.png)
+
+从上图可以看出，在出现多级词的时候消费者1已经消费不了消息了，因为生产者目前所使用的routeKey是 `user.findById.delete`是有3级的，消费者1所使用的通配符 `*` 只能匹配任意一个词所以消费不到信息；
+反之消费者2使用的通配符是 `#` ，能够匹配任意多个词所以能消费。

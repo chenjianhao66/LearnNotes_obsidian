@@ -21,3 +21,6 @@ author:陈建浩
 
 # RabbitMQ工作模式——Routing模式
 [[RabbitMQ工作模式——Routing模式]]
+
+# RabbitMQ整合SpingBoot
+[[RabbitMQ整合SpringBoot]]
