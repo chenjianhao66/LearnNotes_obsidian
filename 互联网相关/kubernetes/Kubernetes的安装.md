@@ -246,6 +246,23 @@ kubeadm join 10.1.3.203:6443 --token mk59c0.2jwnb5d7194iry3c \
 
 ![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2021-12-16_17-01.png)
 
+### 从集群中删除工作节点
+**卸载节点**
+```bash
+kubectl drain <node name> --delete-local-data --force --ignore-daemonsets
+```
+此时节点值是被卸载，不会有pod被调度到该工作节点中
+
+**删除节点**
+```bash
+kubectl delete node <node name>
+```
+
+**清空节点配置**
+此步骤需要到在被删除工作节点上运行，前面步骤在 `master` 节点执行
+```
+sudo kubeadm reset
+```
 
 
 ### 安装Kuborad可视化
