@@ -1,7 +1,7 @@
 {
-  "baseFontSize": 20,
-  "theme": "obsidian",
-  "cssTheme": "Cybertron",
+  "baseFontSize": 15,
+  "theme": "moonstone",
+  "cssTheme": "Blue Topaz",
   "translucency": false,
   "enabledCssSnippets": [
     "tag-flag",
