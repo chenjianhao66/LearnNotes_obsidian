@@ -1,5 +1,10 @@
 {
   "alwaysUpdateLinks": true,
   "promptDelete": false,
+<<<<<<< HEAD
   "legacyEditor": false
+=======
+  "legacyEditor": false,
+  "livePreview": true
+>>>>>>> dd8b8240cd3c98a53f16f2ba920fcf02e31c8bee
 }

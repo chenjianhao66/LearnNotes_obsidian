@@ -4,3 +4,8 @@ author:陈建浩
 #Go #iris
 
 --- 
+
+
+
+# 参考文档
+[iris官网文档](https://www.iris-go.com/docs/#/?id=installation)
