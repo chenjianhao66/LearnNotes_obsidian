@@ -1,10 +1,5 @@
-
-2021-09-02
-21:43:32
-author:陈建浩
 #Docker #容器技术 
 
---- 
 # Docker的架构
 ## Docker核心概念
 Docker的核心基本概念：

@@ -1,3 +1,4 @@
+#ubuntu 
 #  1）MySQL数据库环境配置
 MySQL数据库最快捷的安装方法是通过 `apt-get` 方式安装
 ```

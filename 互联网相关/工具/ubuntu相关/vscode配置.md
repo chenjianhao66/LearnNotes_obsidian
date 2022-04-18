@@ -1,3 +1,5 @@
+
+#ubuntu 
 #  ubuntu下vscode环境搭建
 vscode环境配置步骤如下：
 1. 安装Java Extension Pack插件

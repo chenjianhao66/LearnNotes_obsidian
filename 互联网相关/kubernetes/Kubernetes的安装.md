@@ -1,9 +1,4 @@
-2021-11-23
-16:20:23
-author:陈建浩
-#Kubernetes
-
----
+#Kubernetes 
 ## 安装kubernetes
 
 ### 安装前的准备

@@ -1,9 +1,4 @@
-2021-09-07
-16:48:01
-author:陈建浩
-
-
---- 
+#Java #SpringBoot 
 
 # ConfigurationProperties介绍
 ConfigurationProperties是一个注解，可以标注在一个Class上，这样Spring Boot会从 Environment中获取其属性对应的属性值给其进行注入。比如下面的代码定义中，Spring Boot在实例化`TestConfigurationProperties`这个bean时就会把从Environment中获取属性名为appName的属性值赋给 `TestConfigurationProperties` 的 `appName` 属性。

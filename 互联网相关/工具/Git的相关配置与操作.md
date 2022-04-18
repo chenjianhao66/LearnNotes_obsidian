@@ -1,3 +1,4 @@
+#ubuntu #git
 这里仅记录Git的相关操作，以防日后忘记。
 ## init_初始化
 ```
@@ -58,17 +59,12 @@ git rm git配置.md -cached
 ## ubuntu 命令行终端显示分支名
 1. 进入home 目录
 ```
-
-
 $ cd ~
-
 ```
 
  2. 编辑.bashrc文件
 ```
 $ gedit .bashrc
-
-
 ```
 
 3. 在文件末尾添加以下信息

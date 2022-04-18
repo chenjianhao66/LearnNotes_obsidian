@@ -1,3 +1,4 @@
+#ubuntu 
 ubuntu系统下的Maven环境配置有以下几步：
 - 去官网下载Maven压缩包
 - 解压缩

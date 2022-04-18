@@ -1,9 +1,4 @@
-2021-12-01
-11:13:25
-author:陈建浩
 #Kubernetes 
-
---- 
 
 # 一、Helm是什么
 Helm 是 Kubernetes 的包管理器，是查找、分享和使用软件构建 Kubernetes 的最优方式。Helm 帮助用户管理 Kubernetes 应用——Helm 图表，即使是最复杂的 Kubernetes 应用程序，都可以方便的定义，安装和升级。

@@ -1,9 +1,4 @@
-2021-08-31
-10:51:36
-author:陈建浩
-#Java #SpringBoot
-
----
+#Java #SpringBoot 
 
 # 一、事件-监听机制
 对于SpringApplicationContext(BeanFactory)而言,在整个应用运行过程中(包括应用的启动、销毁), 会发布各种应用事件。开发者也可以实现自己的事件, 从而起到扩展spring框架的作用 。

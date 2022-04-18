@@ -1,3 +1,4 @@
+#ubuntu #Java 
 # ubuntu系统下Java环境配置
 安装Java有两种方式
 -	通过apt软件源在线安装openJDK或者orlcaeJDK；

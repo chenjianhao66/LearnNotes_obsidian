@@ -1,11 +1,6 @@
-2021-09-06
-16:39:00
-author:陈建浩
+#Java #SpringBoot 
 
-
---- 
-
-PostConstruct注解
+# PostConstruct注解
 在Spring项目经常遇到@**PostConstruct**注解，首先介绍一下它的用途: **被注解的方法，在对象加载完依赖注入后执行。**
 
 >Java中该注解的说明：@PostConstruct该注解被用来修饰一个非静态的void（）方法。被@PostConstruct修饰的方法会在服务器加载Servlet的时候运行，并且只会被服务器执行一次。PostConstruct在构造函数之后执行，init（）方法之前执行。

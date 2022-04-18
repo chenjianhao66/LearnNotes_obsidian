@@ -1,3 +1,5 @@
+#Java #SpringBoot 
+
 ## @Resource注解
 该注解是用来装配Bean的，可以写在字段上也可以写在setter方法上。
 ### 注解属性

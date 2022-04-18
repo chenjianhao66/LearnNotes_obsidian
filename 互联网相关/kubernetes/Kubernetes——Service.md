@@ -1,9 +1,4 @@
-2021-12-02
-16:14:31
-author:陈建浩
-
-
---- 
+#Kubernetes 
 # 为什么要有Service
 在kubernetes中，Pod是有生命周期的，如果Pod重启它的IP很有可能会发生变化。如果我们的服务都是将Pod的IP地址写死，Pod挂掉或者重启，和刚才重启的pod相关联的其他服务将会找不到它所关联的Pod。
 为了解决这个问题，在kubernetes中定义了service资源对象，**Service 定义了一个服务访问的入口，客户端通过这个入口即可访问服务背后的应用集群实例**，service是一组Pod的逻辑集合，这一组Pod能够被Service访问到，通常是通过`Label Selector`实现的。

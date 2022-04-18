@@ -1,3 +1,5 @@
+#Java #SpringBoot 
+
 # Serializable接口
 定义：一个对象序列化的接口，一个类只有实现了Serializable接口，这个类的对象才能被序列化。
 

@@ -1,9 +1,4 @@
-2021-08-31
-17:32:35
-author:陈建浩
-#Java #注解 #SpringBoot 
-
---- 
+#Java  #SpringBoot 
 # 一、Java元注解
 元注解是负责对其它注解进行说明的注解，自定义注解时可以使用元注解。[Java](http://c.biancheng.net/java/) 5 定义了 4 个注解，分别是 @Documented、@Target、@Retention 和 @Inherited。Java 8 又增加了 @Repeatable 和 @Native 两个注解。这些注解都可以在 java.lang.annotation 包中找到。下面主要介绍每个元注解的作用及使用。
 ## @Documented

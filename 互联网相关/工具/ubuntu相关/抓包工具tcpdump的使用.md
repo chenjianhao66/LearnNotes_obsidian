@@ -1,9 +1,4 @@
-2021-11-03
-10:51:08
-author:陈建浩
-
-
---- 
+#ubuntu 
 
 ### tcpdump抓包工具的使用
 ubuntu默认是安装了tcpdump的，所以在ubuntu中可以直接使用。

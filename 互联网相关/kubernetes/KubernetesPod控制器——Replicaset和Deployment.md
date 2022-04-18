@@ -1,9 +1,5 @@
-2021-12-03
-09:19:44
-author:陈建浩
-#Kubernetes 
 
---- 
+#Kubernetes 
 #  Replicaset控制器
 ## Replicaset概述
 `ReplicaSet`是kubernetes中的一种副本控制器，简称`rs`，主要作用是控制由其管理的pod，使pod副本的数量始终维持在预设的个数。它的主要作用就是保证一定数量的Pod能够在集群中正常运行，它会持续监听这些Pod的运行状态，在Pod发生故障时重启pod，pod数量减少时重新运行新的 Pod副本。

@@ -1,9 +1,4 @@
-[[2021-11-22]]
-17:26:58
-author:陈建浩
 #踩坑记录  #Kubernetes
-
---- 
 
 # 问题背景
 通过 `kubeadm` 工具部署完 `kubernetes` 集群。

@@ -1,3 +1,4 @@
+#ubuntu 
 ## 文件标签栏换行展示
 1. 使用快捷键 `ctrl + ,` 打开设置面板
 2. 在搜索栏输入 `workbench.editor.wrapTabs` ，将下图出现的选项选上

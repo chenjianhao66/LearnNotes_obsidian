@@ -1,9 +1,4 @@
-[[2021-11-24]]
-08:55:28
-author:陈建浩
 #踩坑记录 #Kubernetes 
-
---- 
 
 # 问题背景
 在安装完 `kubelet`、`kubeadm`、`kubectl` 这三剑客之后，以当前节点作为 `master` 节点进行集群初始化。
