@@ -1,7 +1,7 @@
 2022-01-07
 17:44:18
 author:陈建浩
-#Go 
+#go 
 
 --- 
 ## 使用Golang读取配置文件
@@ -22,8 +22,6 @@ type a struct {
 type b struct {
 	c string `yaml: "c"`
 }
-
-
 ```
 
 ### 环境准备

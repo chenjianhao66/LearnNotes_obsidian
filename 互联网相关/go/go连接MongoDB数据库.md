@@ -1,7 +1,7 @@
 2021-12-30
 10:14:29
 author:陈建浩
-#Go  #MongoDB 
+#go  #MongoDB 
 
 --- 
 在 `Go` 程序连接到 `MongoDB` 数据库可以分为以下步骤：
