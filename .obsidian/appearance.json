@@ -1,7 +1,7 @@
 {
+  "cssTheme": "Blue Topaz",
   "baseFontSize": 16,
   "theme": "moonstone",
-  "cssTheme": "Blue Topaz",
   "translucency": false,
   "enabledCssSnippets": [
     "tag-flag",

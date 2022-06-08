@@ -6,46 +6,17 @@
   "hideUnresolved": true,
   "showOrphans": true,
   "collapse-color-groups": true,
-  "colorGroups": [
-    {
-      "query": "tag:#Java",
-      "color": {
-        "a": 1,
-        "rgb": 14048348
-      }
-    },
-    {
-      "query": "tag:#Kubernetes",
-      "color": {
-        "a": 1,
-        "rgb": 5801951
-      }
-    },
-    {
-      "query": "tag:#leetcode",
-      "color": {
-        "a": 1,
-        "rgb": 11392604
-      }
-    }
-  ],
+  "colorGroups": [],
   "collapse-display": true,
   "showArrow": false,
-  "textFadeMultiplier": -1.6,
-  "nodeSizeMultiplier": 0.898314606741573,
-  "lineSizeMultiplier": 0.925842696629213,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
   "collapse-forces": true,
   "centerStrength": 0.518713248970312,
-<<<<<<< HEAD
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.7132754626224416,
-=======
-  "repelStrength": 12.1367521367521,
-  "linkStrength": 0.769230769230769,
-  "linkDistance": 167,
-  "scale": 0.4084433249421965,
->>>>>>> dd8b8240cd3c98a53f16f2ba920fcf02e31c8bee
+  "scale": 0.8360386601669948,
   "close": false
 }
