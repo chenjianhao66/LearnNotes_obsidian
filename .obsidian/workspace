@@ -1,19 +1,16 @@
 {
   "main": {
-    "id": "ed232190be5a8c3f",
+    "id": "796d8eb18aef5c0e",
     "type": "split",
     "children": [
       {
-        "id": "8c5d31c59539d79b",
-        "id": "fb731b737d8e47f8",
+        "id": "1fe81c8370d5b619",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "互联网相关/Golang/Golang的项目结构布局.md",
+            "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
             "mode": "source",
-            "file": "互联网相关/工具/ubuntu相关配置.md",
-            "mode": "preview",
             "source": false
           }
         }
@@ -22,15 +19,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "1fbe08b0989b6edd",
+    "id": "3e352e107958d0e1",
     "type": "split",
     "children": [
       {
-        "id": "f0dca430d24d334e",
+        "id": "5a19cb0fa307de38",
         "type": "tabs",
         "children": [
           {
-            "id": "da16cc56ac000be9",
+            "id": "d452c8dc324d0985",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -38,7 +35,7 @@
             }
           },
           {
-            "id": "a7b25cb5435c60f1",
+            "id": "0af9d8647f72c75e",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -59,33 +56,44 @@
     "width": 300
   },
   "right": {
-    "id": "f842614617fd546b",
+    "id": "661125bd16b1f267",
     "type": "split",
     "children": [
       {
-        "id": "8825a04b1d327196",
+        "id": "dd3aaaa47993d727",
         "type": "tabs",
         "children": [
           {
-            "id": "15402439617ac030",
+            "id": "e41e3e4c88bf3e78",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "互联网相关/Golang/Golang的项目结构布局.md",
-                "file": "互联网相关/工具/ubuntu相关配置.md",
+                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": false
+                "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "bf45095ea9c274ef",
+            "id": "6827f8e4d9f27c9b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a260811eef8b5bee",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -96,74 +104,41 @@
             }
           },
           {
-            "id": "a3eec7692774add7",
+            "id": "8d19784ed29e5106",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "互联网相关/Golang/Golang的项目结构布局.md"
-                "file": "互联网相关/工具/ubuntu相关配置.md"
+                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md"
               }
             }
           },
           {
-            "id": "526ac055b528998b",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "互联网相关/工具/ubuntu相关配置.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": false
-              }
-            }
-          }
-        ],
-        "currentTab": 2
-      },
-      {
-        "id": "cfa13bf5712f090e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "fc0d80c29971fecd",
+            "id": "26d9a2d237cfd932",
             "type": "leaf",
             "state": {
               "type": "calendar",
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 284
+    "width": 300
   },
-  "active": "8c5d31c59539d79b",
+  "active": "1fe81c8370d5b619",
   "lastOpenFiles": [
-    "互联网相关/Golang/Golang的项目结构布局.md",
-    "互联网相关/Golang/Golang读取配置文件内容.md",
-    "互联网相关/Golang/Golang安装以及在vscode上的配置.md",
-    "互联网相关/Golang/Go使用iris框架来搭建web服务.md",
-    "互联网相关/Golang/Go实现JWTt鉴权.md",
-    "互联网相关/Golang/Go连接MongoDB数据库.md",
-    "互联网相关/Java/Spring/Springboot + Validated进行入参校验以及全局异常处理.md",
-    "互联网相关/Java/Spring/Spring boot的全局异常处理器.md",
-    "互联网相关/Golang/Golang权限管理库——casbin.md",
-    "互联网相关/Leetcode/程序员面试金典/面试题02.04. 分割链表.md"
-    "width": 285
-  },
-  "active": "fb731b737d8e47f8",
-  "lastOpenFiles": [
-    "互联网相关/工具/ubuntu相关配置.md",
-    "互联网相关/工具/ubuntu相关/Ubuntu汇总.md",
-    "互联网相关/kubernetes/Kubernetes的安装.md",
-    "互联网相关/Golang/Go实现JWTt鉴权.md",
-    "互联网相关/Golang/Go连接MongoDB数据库.md",
-    "互联网相关/Golang/Golang读取配置文件内容.md",
-    "互联网相关/Golang/Go使用iris框架来搭建web服务.md",
-    "互联网相关/Java/Java学习路线.md",
-    "反思/2021/2021年度总结.md",
-    "互联网相关/Golang/Golang的项目结构布局.md"
+    "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
+    "互联网相关/go/golang的项目结构布局.md",
+    "互联网相关/go/golang标准库学习——io相关.md",
+    "互联网相关/go/Go工程化规范.md",
+    "互联网相关/Leetcode/Leetcode.md",
+    "互联网相关/Java/Spring/单元测试Junit5.md",
+    "互联网相关/docker/DockerCompose原理和使用.md",
+    "互联网相关/go/golang安装以及在vscode上的配置.md",
+    "互联网相关/go/使用ProtoBuf将message文件生成go文件.md",
+    "互联网相关/go/命令行库—Cobra.md"
   ]
 }
