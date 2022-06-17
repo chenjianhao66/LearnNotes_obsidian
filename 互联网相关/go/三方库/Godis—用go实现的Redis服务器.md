@@ -597,4 +597,262 @@ func (s *readState) finished() bool {
 expectedArgsCount 字段会在 parseMultiBulkHeader 函数进行设置，代表着客户端所输入命令的个数；如果 expectedArgsCount >0 并且 args 切片长度等于 expectedArgsCount 字段的话，则代表命令以及全部读取完成。
 > args 字段会在 readBody 函数中进行追加
 
-如果 finished 函数返回的值是 true ，则代表着已经是最后一个命令了
+如果 finished 函数返回的值是 true ，则代表着已经是最后一个命令了。就初始化一个 Payload 结构体，将 result 和 err 赋值给对应字段，然后将该字段往管道内发送，结束此循环。
+
+协议的解析结果是客户所输入的命令，比如 *get name* 之类的，然后将存放该命令的切片传入到 Handler 对象的 db字段的 Exec 函数中，真正执行该命令的逻辑都在该函数内。
+
+
+#### 命令执行
+协议解析完之后会将客户端输入的命令追加到一个切片内，然后交给 Handler 对象的 db 字段执行 Exec 函数（ godis/redis/server/server.go 109 ）执行，如下：
+
+```go
+result := h.db.Exec(client, r.Args)
+```
+
+Exec 函数的执行流程如下：
+1. 首先截取命令切片的第一位，用 if 判断命令 key 是否是 subscribe 、publish、bgrewriteaof、rewriteaof、flushall、save、bgsave、select；
+	1. 如果是这些命令，则单独启用执行逻辑，最后转 5；
+	2. 如果不是这些命令，则调用选择当前选择的库（db对象），用该库调用 Exec 库调用，转 2；
+2. 确认执行命令的库对象，调用该 db 对象的 Exec 函数执行命令，依然需要判断命令是否是 multi、discard、exec、watch、flushdb、
+	1. 如果是这些命令的话则单独启用执行逻辑，最后转 5；
+	2. 如果不是这些命令则执行 execNormalCommand 函数执行，转 3；
+3. 执行 execNormalCommand 函数，该函数会根据命令 key （比如 set name ，命令 key 就是 set ）作为键去从一个名称为 cmdTable 的 map 去值
+	1. 获取到了代表系统设置了该命令，执行4
+	2. 获取不到则代表未识别该命令，返回错误结果，最后转 5；
+4. 获取到值之后获取命令所对应的函数执行
+5. 返回结果
+
+下图是对以上代码执行逻辑的一个描述：
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/Godis 命令执行流程.png)
+
+在上面的执行流程中有出现多次 Exec 函数，那这前后关系到底是怎样的呢？
+
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/godis的局部类图.png)
+
+MultiDB 对象的 Exec 函数（ godis/database/database.go 81行 ）具体代码如下：
+```go
+func (mdb *MultiDB) Exec(c redis.Connection, cmdLine [][]byte) (result redis.Reply) {  
+   defer func() {  
+      if err := recover(); err != nil {  
+         logger.Warn(fmt.Sprintf("error occurs: %v\n%s", err, string(debug.Stack())))  
+         result = &protocol.UnknownErrReply{}  
+      }  
+   }()  
+  
+   cmdName := strings.ToLower(string(cmdLine[0]))  
+   // authenticate  
+   if cmdName == "auth" {  
+      return Auth(c, cmdLine[1:])  
+   }  
+   if !isAuthenticated(c) {  
+      return protocol.MakeErrReply("NOAUTH Authentication required")  
+   }  
+  
+   // special commands which cannot execute within transaction  
+   // 判断命令是否是以下命令，是以下命令的话则执行单独逻辑并返回结果
+   if cmdName == "subscribe" {  
+      if len(cmdLine) < 2 {  
+         return protocol.MakeArgNumErrReply("subscribe")  
+      }  
+      return pubsub.Subscribe(mdb.hub, c, cmdLine[1:])  
+   } else if cmdName == "publish" {  
+      return pubsub.Publish(mdb.hub, cmdLine[1:])  
+   } else if cmdName == "unsubscribe" {  
+      return pubsub.UnSubscribe(mdb.hub, c, cmdLine[1:])  
+   } else if cmdName == "bgrewriteaof" {  
+      // aof.go imports router.go, router.go cannot import BGRewriteAOF from aof.go  
+      return BGRewriteAOF(mdb, cmdLine[1:])  
+   } else if cmdName == "rewriteaof" {  
+      return RewriteAOF(mdb, cmdLine[1:])  
+   } else if cmdName == "flushall" {  
+      return mdb.flushAll()  
+   } else if cmdName == "save" {  
+      return SaveRDB(mdb, cmdLine[1:])  
+   } else if cmdName == "bgsave" {  
+      return BGSaveRDB(mdb, cmdLine[1:])  
+   } else if cmdName == "select" {  
+      if c != nil && c.InMultiState() {  
+         return protocol.MakeErrReply("cannot select database within multi")  
+      }  
+      if len(cmdLine) != 2 {  
+         return protocol.MakeArgNumErrReply("select")  
+      }  
+      return execSelect(c, mdb, cmdLine[1:])  
+   }  
+   // todo: support multi database transaction  
+  
+   // normal commands  
+   // 代码走到这代表着都是正常命令
+   // 获取当前所选择库的下标，通过下标获取 DB 对象，在使用 DB 对象的 Exec 函数执行逻辑
+   dbIndex := c.GetDBIndex()  
+   if dbIndex >= len(mdb.dbSet) {  
+      return protocol.MakeErrReply("ERR DB index is out of range")  
+   }  
+   selectedDB := mdb.dbSet[dbIndex]  
+   return selectedDB.Exec(c, cmdLine)  
+}
+```
+
+DB 对象的 Exec 函数（ godis/database/singil_db.go 82 行）具体代码：
+```go
+// Exec executes command within one database
+func (db *DB) Exec(c redis.Connection, cmdLine [][]byte) redis.Reply {  
+   // transaction control commands and other commands which cannot execute within transaction  
+   cmdName := strings.ToLower(string(cmdLine[0]))  
+   if cmdName == "multi" {  
+      if len(cmdLine) != 1 {  
+         return protocol.MakeArgNumErrReply(cmdName)  
+      }  
+      return StartMulti(c)  
+   } else if cmdName == "discard" {  
+      if len(cmdLine) != 1 {  
+         return protocol.MakeArgNumErrReply(cmdName)  
+      }  
+      return DiscardMulti(c)  
+   } else if cmdName == "exec" {  
+      if len(cmdLine) != 1 {  
+         return protocol.MakeArgNumErrReply(cmdName)  
+      }  
+      return execMulti(db, c)  
+   } else if cmdName == "watch" {  
+      if !validateArity(-2, cmdLine) {  
+         return protocol.MakeArgNumErrReply(cmdName)  
+      }  
+      return Watch(db, c, cmdLine[1:])  
+   } else if cmdName == "flushdb" {  
+      if !validateArity(1, cmdLine) {  
+         return protocol.MakeArgNumErrReply(cmdName)  
+      }  
+      if c.InMultiState() {  
+         return protocol.MakeErrReply("ERR command 'FlushDB' cannot be used in MULTI")  
+      }  
+      return execFlushDB(db, cmdLine[1:])  
+   }  
+   if c != nil && c.InMultiState() {  
+      EnqueueCmd(c, cmdLine)  
+      return protocol.MakeQueuedReply()  
+   }  
+  
+   // 执行正常命令  
+   return db.execNormalCommand(cmdLine)  
+}
+```
+
+execNormalCommand 函数具体代码：
+```go
+// ExecFunc is interface for command executor// args don't include cmd line  
+type ExecFunc func(db *DB, args [][]byte) redis.Reply  
+  
+// PreFunc analyses command line when queued command to `multi`// returns related write keys and read keys  
+type PreFunc func(args [][]byte) ([]string, []string)  
+
+// UndoFunc returns undo logs for the given command line// execute from head to tail when undo  
+type UndoFunc func(db *DB, args [][]byte) []CmdLine
+
+// CmdLine is alias for [][]byte, represents a command linetype CmdLine = [][]byte
+var cmdTable = make(map[string]*command)  
+  
+type command struct {  
+   executor ExecFunc  
+   prepare  PreFunc // return related keys command  
+   undo     UndoFunc  
+   arity    int // allow number of args, arity < 0 means len(args) >= -arity   flags    int  
+}
+
+// 执行正常命令，比如get、set、plist.....之类的  
+func (db *DB) execNormalCommand(cmdLine [][]byte) redis.Reply {  
+   // 判断命令前缀是否在cmdTable这个map里面  
+   cmdName := strings.ToLower(string(cmdLine[0]))  
+   cmd, ok := cmdTable[cmdName]  
+   if !ok {  
+      // 命令不存在  
+      return protocol.MakeErrReply("ERR unknown command '" + cmdName + "'")  
+   }  
+   if !validateArity(cmd.arity, cmdLine) {  
+      return protocol.MakeArgNumErrReply(cmdName)  
+   }  
+  
+   prepare := cmd.prepare  
+   write, read := prepare(cmdLine[1:])  
+   db.addVersion(write...)  
+   db.RWLocks(write, read)  
+   defer db.RWUnLocks(write, read)  
+   fun := cmd.executor  
+   return fun(db, cmdLine[1:])  
+}
+```
+
+execNormalCommand 函数会从一个名称为 cmdTable 的 map 根据键获取值，存放的值类型是 command 类型，该类型有4个字段，分别是3个函数类型和一个 int 类型：
+1. ExecFunc：执行命令的的函数
+2. PreFunc：将命令排队到“multi”时，PreFunc分析命令行返回相关的写键和读键
+3. UndoFunc：该函数会返回给定命令行的撤消日志，撤消时从头到尾执行
+4. arity：命令的参数个数（ set name ，arity的个数则为2 ）
+
+> 根据阅读源码得知，arity 的取值有2种，为正数时就必须要求命令的参数个数为 arity ，如果为负数则代表参数个数最少为 arity 的绝对值数
+> 举例
+> 注册 get 命令时， arity 的值为 2，那么代表着输入命令时，连带 get 命令，你的参数只能是2个，不能是 2个以下或者 2 个以上的参数数量： 
+>  > 正例：get name
+>  > 反例：1. get   2. get name age
+>  
+>  注册 set 命令时，arity 的值为 -3，代表着输入命令时，连带 set 命令，最少输入的参数数量是 3 个，不能是 3 个以下的参数数量
+>  > 正例： 1. set name sunshine   2. set name sunshine EX 10  3. set name sunshine EX 10 NX
+>  > 反例：set
+
+那既然得知用命令作为 key 和相对应的 command 类型实例存入 cmdTable 中，那什么时候存的呢？阅读代码得知，是通过每一个 go 文件的 init 函数里调用 RegisterCommand 函数（ godis/database/route.go）进行注册，RegisterCommand 函数的具体代码如下：
+```go
+// RegisterCommand registers a new command// arity means allowed number of cmdArgs, arity < 0 means len(args) >= -arity.  
+// for example: the arity of `get` is 2, `mget` is -2  
+func RegisterCommand(name string, executor ExecFunc, prepare PreFunc, rollback UndoFunc, arity int) {  
+   name = strings.ToLower(name)  
+   cmdTable[name] = &command{  
+      executor: executor,  
+      prepare:  prepare,  
+      undo:     rollback,  
+      arity:    arity,  
+   }  
+}
+```
+
+那 godis 有多少命令可以支持呢？
+![](https://images-1306554305.cos.ap-guangzhou.myqcloud.com/2022-06-16_13-45.png)
+
+将近有 100 多条命令的支持，所以执行命令的时候就在 cmdTable Map 里面获取相对应的命令函数执行。
+
+#### 数据结构
+godis 的数据结构实现在 godis/datastruct 文件夹中，实现的数据结构有链表、字典、set、跳表以及跳表实现的其他数据结构。
+
+##### 字典
+godis 定义了字典的接口，目前有2个结构体实现了该接口，分别是 ConcurrentDict 和 simpleDict；其中 ConcurrentDict 内置了 sync.RWMutex ，所以该结构是并发安全的
+
+
+```go
+type Dict interface {  
+   Get(key string) (val interface{}, exists bool)  
+   Len() int  
+   Put(key string, val interface{}) (result int)  
+   PutIfAbsent(key string, val interface{}) (result int)  
+   PutIfExists(key string, val interface{}) (result int)  
+   Remove(key string) (result int)  
+   ForEach(consumer Consumer)  
+   Keys() []string  
+   RandomKeys(limit int) []string  
+   RandomDistinctKeys(limit int) []string  
+   Clear()  
+}
+
+
+// ConcurrentDict is thread safe map using sharding lock
+type ConcurrentDict struct {  
+   table      []*shard  
+   count      int32  
+   shardCount int  
+}  
+  
+type shard struct {  
+   m     map[string]interface{}  
+   mutex sync.RWMutex  
+}
+```
+
+concurrent.go 整个文件也就将近 300 行代码，阅读起来难度也不是很大
