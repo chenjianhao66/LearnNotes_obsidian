@@ -1,4 +1,16 @@
 [
   "calendar",
-  "sliding-panes-obsidian"
+  "sliding-panes-obsidian",
+  "obsidian-pangu",
+  "obsidian-admonition",
+  "table-editor-obsidian",
+  "dataview",
+  "obsidian-excalidraw-plugin",
+  "homepage",
+  "obsidian-kanban",
+  "url-into-selection",
+  "obsidian-weread-plugin",
+  "obsidian-minimal-settings",
+  "obsidian-sortable",
+  "obsidian-hider"
 ]

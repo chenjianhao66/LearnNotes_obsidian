@@ -1,15 +1,15 @@
 {
   "main": {
-    "id": "796d8eb18aef5c0e",
+    "id": "2b8c6d12896a47b5",
     "type": "split",
     "children": [
       {
-        "id": "1fe81c8370d5b619",
+        "id": "5bae56987d663e07",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
+            "file": "meta/Home.md",
             "mode": "source",
             "source": false
           }
@@ -19,15 +19,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "3e352e107958d0e1",
+    "id": "3b70916f96a787d6",
     "type": "split",
     "children": [
       {
-        "id": "5a19cb0fa307de38",
+        "id": "3f8d250aa6c903ff",
         "type": "tabs",
         "children": [
           {
-            "id": "d452c8dc324d0985",
+            "id": "4310ba26ef6a9f9c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -35,7 +35,7 @@
             }
           },
           {
-            "id": "0af9d8647f72c75e",
+            "id": "83683d882369af3b",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -48,6 +48,14 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "5547d2f5b0c97056",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
           }
         ]
       }
@@ -56,20 +64,21 @@
     "width": 300
   },
   "right": {
-    "id": "661125bd16b1f267",
+    "id": "e397e1619122e744",
     "type": "split",
     "children": [
       {
-        "id": "dd3aaaa47993d727",
+        "id": "f9c1409405581ba0",
         "type": "tabs",
+        "dimension": 64.3344709897611,
         "children": [
           {
-            "id": "e41e3e4c88bf3e78",
+            "id": "216faeb2f7e68889",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
+                "file": "meta/Home.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -81,19 +90,19 @@
             }
           },
           {
-            "id": "6827f8e4d9f27c9b",
+            "id": "94cef194542fe44a",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
+                "file": "meta/Home.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "a260811eef8b5bee",
+            "id": "ed778c5add10e528",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -104,41 +113,48 @@
             }
           },
           {
-            "id": "8d19784ed29e5106",
+            "id": "f9ec364293e3a188",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "互联网相关/工具/jetbrains系列编辑器的实用插件.md"
+                "file": "meta/Home.md"
               }
             }
-          },
+          }
+        ],
+        "currentTab": 3
+      },
+      {
+        "id": "05260571d38e0785",
+        "type": "tabs",
+        "dimension": 35.665529010238906,
+        "children": [
           {
-            "id": "26d9a2d237cfd932",
+            "id": "fafd1de84a38d428",
             "type": "leaf",
             "state": {
               "type": "calendar",
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
     "width": 300
   },
-  "active": "1fe81c8370d5b619",
+  "active": "4310ba26ef6a9f9c",
   "lastOpenFiles": [
-    "互联网相关/工具/jetbrains系列编辑器的实用插件.md",
-    "互联网相关/go/golang的项目结构布局.md",
-    "互联网相关/go/golang标准库学习——io相关.md",
-    "互联网相关/go/Go工程化规范.md",
-    "互联网相关/Leetcode/Leetcode.md",
-    "互联网相关/Java/Spring/单元测试Junit5.md",
-    "互联网相关/docker/DockerCompose原理和使用.md",
-    "互联网相关/go/golang安装以及在vscode上的配置.md",
-    "互联网相关/go/使用ProtoBuf将message文件生成go文件.md",
-    "互联网相关/go/命令行库—Cobra.md"
+    "meta/Home.md",
+    "README.md",
+    "未命名.md",
+    "读书笔记/首页.md",
+    "读书笔记/微信读书/个人成长/如何有效阅读一本书：超实用笔记读书法.md",
+    "测试dataview.md",
+    "测试dataview 1.md",
+    "读书笔记/微信读书/文学/当你学会独处.md",
+    "读书笔记/微信读书/个人成长/好好学习：个人知识管理精进指南.md",
+    "读书笔记/微信读书/个人成长/为人三会：会做人 会说话 会办事.md"
   ]
 }

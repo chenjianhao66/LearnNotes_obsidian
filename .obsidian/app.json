@@ -2,5 +2,6 @@
   "legacyEditor": false,
   "showLineNumber": false,
   "livePreview": true,
-  "showIndentGuide": true
+  "showIndentGuide": true,
+  "readableLineLength": false
 }
